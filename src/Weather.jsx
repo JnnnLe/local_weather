@@ -10,7 +10,6 @@ class Weather extends Component {
       <div>
         <h1>BE HAPPY.</h1>
 
-
         {this.props.lat}
         {this.props.lon}
       </div>

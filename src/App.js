@@ -37,8 +37,13 @@ class App extends Component {
   showPosition(position) {
     this.setState({
       lat:  position.coords.latitude,
-      lon: position.coords.longitude    
-    }, this.displayWeather());
+      lon: position.coords.longitude, 
+      isVisible: true   
+    });
+
+    if (this.state.isVisible == true) {
+      this.displayWeather();
+    }
   };
 
   displayWeather() {
@@ -46,7 +51,6 @@ class App extends Component {
     let lat = that.state.lat;
     let lon = that.state.lon;
     fetch(`https://fcc-weather-api.glitch.me/api/current?lat=${lat}&lon=${lon}`)
-    // fetch(`https://fcc-weather-api.glitch.me/api/current?lat=37.837754&lon=-122.20684159999999`)
     .then((response) => {
       return response.json();
     })
