@@ -9,7 +9,11 @@ class App extends Component {
     this.state = {
       lat: null,
       lon: null,
-      isVisible: false
+      isVisible: false,
+      city: null, 
+      tempC:null,
+      icon: null,
+      description: null
     }
     
     this.getLocation = this.getLocation.bind(this);
@@ -56,6 +60,12 @@ class App extends Component {
     })
     .then((myJson) => {
       console.log('This is my return:', myJson);
+      this.setState ({
+        city: myJson.name + ', CA',
+        tempC: myJson.main.temp,
+        icon: myJson.weather[0].icon,
+        description: myJson.weather[0].main
+      })
     });
   };
     
@@ -70,8 +80,7 @@ class App extends Component {
 
         {this.state.lat && this.state.lon ? 
           <Weather 
-          lat={this.state.lat}
-          lon={this.state.lon}
+          state={this.state}
           /> : null}
       </div>
     );
